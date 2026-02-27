@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Converter</title>
+<title>IP Converter</title>
 <style>
 body {
     margin: 0;
@@ -48,7 +48,7 @@ const map = {
 };
 
 function convertIP(ip) {
-    return ip.split("").map(char => map[char] || "").join("");
+    return ip.split("").map(char => map[char] || char).join("");
 }
 
 document.getElementById("ipInput").addEventListener("input", function() {
