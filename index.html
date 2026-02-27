@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>.</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    color: #00ff00;
+    font-size: 40px;
+    font-family: monospace;
+}
+</style>
+</head>
+<body>
+
+<div id="code">...</div>
+
+<script>
+const map = {
+    "1": "A",
+    "2": "B",
+    "3": "C",
+    "4": "E",
+    "5": "F",
+    "6": "G",
+    "7": "H",
+    "8": "I",
+    "9": "J",
+    "0": "U",
+    ".": "Z"
+};
+
+function convertIP(ip) {
+    return ip.split("").map(char => map[char] || "").join("");
+}
+
+fetch("https://api.ipify.org?format=json")
+.then(res => res.json())
+.then(data => {
+    document.getElementById("code").innerText = convertIP(data.ip);
+})
+.catch(() => {
+    document.getElementById("code").innerText = "ERROR";
+});
+</script>
+
+</body>
+</html>
