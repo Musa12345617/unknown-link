@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>.</title>
+<title>Converter</title>
 <style>
 body {
     margin: 0;
@@ -15,11 +15,22 @@ body {
     font-size: 40px;
     font-family: monospace;
 }
+.container {
+    text-align: center;
+}
+input {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
 </style>
 </head>
 <body>
 
-<div id="code">...</div>
+<div class="container">
+    <input type="text" id="ipInput" placeholder="Enter IP address">
+    <div id="code">...</div>
+</div>
 
 <script>
 const map = {
@@ -40,13 +51,8 @@ function convertIP(ip) {
     return ip.split("").map(char => map[char] || "").join("");
 }
 
-fetch("https://api.ipify.org?format=json")
-.then(res => res.json())
-.then(data => {
-    document.getElementById("code").innerText = convertIP(data.ip);
-})
-.catch(() => {
-    document.getElementById("code").innerText = "ERROR";
+document.getElementById("ipInput").addEventListener("input", function() {
+    document.getElementById("code").textContent = convertIP(this.value);
 });
 </script>
 
